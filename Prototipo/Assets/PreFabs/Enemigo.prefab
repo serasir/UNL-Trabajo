@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5590547760513085445}
   - component: {fileID: 5590547760513085444}
   - component: {fileID: 5590547760513085443}
+  - component: {fileID: 1677984208}
   m_Layer: 0
   m_Name: Enemigo
   m_TagString: Enemigo
@@ -107,7 +108,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!60 &5590547760513085444
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -169,3 +170,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vida: 1
   velocidad: 3
+--- !u!95 &1677984208
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5590547760513085442}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d1316b5218de3694ebfa121ebba1cf35, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

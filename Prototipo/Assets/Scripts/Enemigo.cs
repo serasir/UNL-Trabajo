@@ -11,7 +11,7 @@ public class Enemigo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        EnemyAnim = GameObject.Find("Enemy").GetComponent<Animator>();
+        EnemyAnim = GameObject.Find("Enemigo").GetComponent<Animator>();
 
     }
 
