@@ -11,6 +11,7 @@ TagManager:
   - cartel
   - Golpe
   - Golpe2
+  - Boton
   layers:
   - Default
   - TransparentFX
