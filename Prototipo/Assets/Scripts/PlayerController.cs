@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public Image Nube;
 
     //PRIVATE
+    private bool EstarEnSuelo;
     private float HorizontalInput;
     private Rigidbody2D playerRB;
     private int numeroSalto=0;
@@ -42,12 +43,13 @@ public class PlayerController : MonoBehaviour
         {
             playerRB.AddForce(Vector2.up * FuerzaDeSalto, ForceMode2D.Impulse);
             numeroSalto++;
+            EstarEnSuelo = false;
         }
         else if (numeroSalto >= 2) 
         {
             FuerzaDeSalto = 0;
         }
-        Muerte();
+        Animaciones();
         if (Input.GetKeyDown(KeyCode.Escape)) 
         {
             Application.Quit();
@@ -71,13 +73,42 @@ public class PlayerController : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Suelo")) 
         {
+            EstarEnSuelo = true;
             FuerzaDeSalto = 4.5f;
             numeroSalto = 0;
         }
     }
-    private void Muerte() 
+    private void Animaciones() 
     {
-        if (vida <= 0) 
+        //Salto
+        if (EstarEnSuelo == false)
+        {
+            playerAnim.SetBool("Saltando", true);
+        }
+        else if (EstarEnSuelo == true) 
+        {
+            playerAnim.SetBool("Saltando", false);
+        }
+        //CAMINAR
+        if (Input.GetKey(KeyCode.D))
+        {
+            playerAnim.SetBool("Caminando", true);
+        }
+        else if (!Input.GetKey(KeyCode.D)) 
+        {
+            playerAnim.SetBool("Caminando", false);
+        }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            playerAnim.SetBool("CamIzq", true);
+        }
+        else if (!Input.GetKey(KeyCode.A)) 
+        {
+            playerAnim.SetBool("CamIzq", false);
+        }
+        //MUERTE
+        if (vida <= 0)
         {
 
             playerAnim.SetBool("Muerto", true);
