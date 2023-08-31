@@ -6,24 +6,31 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
+    //PUBLIC
+    public float velocidad;
+    public float FuerzaDeSalto;
+    public int vida;
+    public Animator playerAnim;
+    public GameObject pistolPlayer;
+    public GameObject PistolaFalsa;
+    public AudioClip Disparo;
+    public AudioClip Death;
     public GameObject SalidaDeBala;
     public GameObject[] PreFabBala;
     public Image Nube;
+
+    //PRIVATE
     private float HorizontalInput;
-    public float velocidad;
-    public float FuerzaDeSalto;
     private Rigidbody2D playerRB;
-    public int vida;
-    public Animator playerAnim;
     private int numeroSalto=0;
-    public GameObject pistolPlayer;
-    public GameObject PistolaFalsa;
     private bool TenerPistola = false;
+    private AudioSource SonidoPlayer;
     // Start is called before the first frame update
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
         playerAnim = GameObject.Find("Player").GetComponent<Animator>();
+        SonidoPlayer = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -48,6 +55,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K) && TenerPistola == true) 
         {
             Instantiate(PreFabBala[0], SalidaDeBala.transform.position, SalidaDeBala.transform.rotation);
+            SonidoPlayer.PlayOneShot(Disparo, 1);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -55,6 +63,10 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemigo"))
         {
             vida -= 1;
+            if (vida == 0) 
+            {
+                SonidoPlayer.PlayOneShot(Death, 1);
+            }
             Debug.Log(vida);
         }
         else if (collision.gameObject.CompareTag("Suelo")) 
@@ -67,6 +79,7 @@ public class PlayerController : MonoBehaviour
     {
         if (vida <= 0) 
         {
+
             playerAnim.SetBool("Muerto", true);
             StartCoroutine(TiempoParaCambiarAnimacion());
             velocidad = 0;
