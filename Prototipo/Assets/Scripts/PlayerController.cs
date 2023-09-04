@@ -15,9 +15,12 @@ public class PlayerController : MonoBehaviour
     public GameObject PistolaFalsa;
     public AudioClip Disparo;
     public AudioClip Death;
+    public AudioClip Salto;
+    public AudioClip Victoria;
     public GameObject SalidaDeBala;
     public GameObject[] PreFabBala;
     public Image Nube;
+    public AudioSource SonidoPlayer;
 
     //PRIVATE
     private bool EstarEnSuelo;
@@ -25,7 +28,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRB;
     private int numeroSalto=0;
     private bool TenerPistola = false;
-    private AudioSource SonidoPlayer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +47,7 @@ public class PlayerController : MonoBehaviour
             playerRB.AddForce(Vector2.up * FuerzaDeSalto, ForceMode2D.Impulse);
             numeroSalto++;
             EstarEnSuelo = false;
+            SonidoPlayer.PlayOneShot(Salto, 1);
         }
         else if (numeroSalto >= 2) 
         {

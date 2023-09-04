@@ -263,10 +263,13 @@ MonoBehaviour:
   PistolaFalsa: {fileID: 0}
   Disparo: {fileID: 8300000, guid: a3d1511534ed2f54b9a76dacbee30bdc, type: 3}
   Death: {fileID: 8300000, guid: 2afae84fb5e462c4b9f54983d76b4cf0, type: 3}
+  Salto: {fileID: 8300000, guid: 98459567cf74a264ba52e4ed989ab63d, type: 3}
+  Victoria: {fileID: 8300000, guid: bf83a8415b4fc354b931ab5002b102b4, type: 3}
   SalidaDeBala: {fileID: 2126238013}
   PreFabBala:
   - {fileID: 1478718444037446455, guid: d0082f46b06cb894c805151d566b4029, type: 3}
   Nube: {fileID: 0}
+  SonidoPlayer: {fileID: 0}
 --- !u!95 &8131531790814526107
 Animator:
   serializedVersion: 4
