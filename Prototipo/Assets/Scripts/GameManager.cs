@@ -13,22 +13,32 @@ public class GameManager : MonoBehaviour
     
     //PRIVATE
     private PlayerController PlayerScrp;
+    private Meta MetaScrp;
     // Start is called before the first frame update
     void Start()
     {
         PlayerScrp = GameObject.Find("Player").GetComponent<PlayerController>();
+        MetaScrp = GameObject.Find("Cartel").GetComponent<Meta>();
     }
 
     // Update is called once per frame
     void Update()
     {
         Derrota();
+        Victoria();
     }
     private void Derrota() 
     {
         if (PlayerScrp.vida <= 0) 
         {
             CartelDerrota.gameObject.SetActive(true);
+        }
+    }
+    private void Victoria() 
+    {
+        if (MetaScrp.Ganaste == true) 
+        {
+            CartelVictoria.gameObject.SetActive(true);
         }
     }
     public void ReiniciarLVL() 

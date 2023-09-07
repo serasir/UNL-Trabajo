@@ -10,12 +10,14 @@ public class Meta : MonoBehaviour
     private PlayerController PlayerScrp;
     public float velocidad;
     private AudioSource MusicaFondo;
+    public bool Ganaste;
     // Start is called before the first frame update
     void Start()
     {
         MusicaFondo = GameObject.Find("MusicaFondo").GetComponent<AudioSource>();
         PlayerRb = GameObject.Find("Player").GetComponent<Rigidbody2D>();
         PlayerScrp = GameObject.Find("Player").GetComponent<PlayerController>();
+        Ganaste = false;
     }
 
     // Update is called once per frame
@@ -27,6 +29,7 @@ public class Meta : MonoBehaviour
     {
         if (collision.CompareTag("Player")) 
         {
+            Ganaste = true;
             PlayerRb.gravityScale = 0;
             PlayerScrp.velocidad = 0;
             PlayerScrp.FuerzaDeSalto = 0;
