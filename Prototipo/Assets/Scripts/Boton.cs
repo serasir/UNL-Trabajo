@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Boton : MonoBehaviour
 {
+    private Animator PuertaAnim;
+    public BoxCollider2D PuertaCollider;
+    private Animator BotonAnim;
     // Start is called before the first frame update
     void Start()
     {
-        
+        PuertaAnim = GameObject.Find("Puerta").GetComponent<Animator>();
+        BotonAnim = GameObject.Find("Boton").GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -15,11 +19,13 @@ public class Boton : MonoBehaviour
     {
         
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Bala")) 
+        if (collision.CompareTag("Player")) 
         {
-            Debug.Log("Hola");
+            BotonAnim.SetBool("Activando", true);
+            PuertaAnim.SetBool("Abriendo", true);
+            PuertaCollider.enabled = false;
         }
     }
 }

@@ -8,6 +8,7 @@ public class Bala : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
     }
 
     // Update is called once per frame
@@ -17,7 +18,9 @@ public class Bala : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
-
+        if (collision.gameObject.CompareTag("Suelo")) 
+        {
+            Destroy(gameObject);
+        }
     }
 }
