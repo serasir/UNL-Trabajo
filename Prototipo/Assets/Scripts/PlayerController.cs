@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //MOVIMIENTO
         HorizontalInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector2.right * HorizontalInput * velocidad * Time.deltaTime);
         if (Input.GetKeyDown(KeyCode.W))
@@ -49,15 +50,18 @@ public class PlayerController : MonoBehaviour
             EstarEnSuelo = false;
             SonidoPlayer.PlayOneShot(Salto, 1);
         }
+        //MECANICA DOBLE SALTO
         else if (numeroSalto >= 2) 
         {
             FuerzaDeSalto = 0;
         }
         Animaciones();
+        //APRETAR ESC PARA SALIR DEL JUEGO
         if (Input.GetKeyDown(KeyCode.Escape)) 
         {
             Application.Quit();
         }
+        //DISPARAR
         if (Input.GetKeyDown(KeyCode.K) && TenerPistola == true) 
         {
             Instantiate(PreFabBala[0], SalidaDeBala.transform.position, SalidaDeBala.transform.rotation);
@@ -66,6 +70,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //CHOQUE CON ENEMIGO
         if (collision.gameObject.CompareTag("Enemigo"))
         {
             vida -= 1;
@@ -74,6 +79,7 @@ public class PlayerController : MonoBehaviour
                 SonidoPlayer.PlayOneShot(Death, 1);
             }
         }
+        //TOCAR SUELO
         else if (collision.gameObject.CompareTag("Suelo")) 
         {
             EstarEnSuelo = true;
@@ -83,7 +89,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Animaciones() 
     {
-        //Salto
+        //SALTO
         if (EstarEnSuelo == false)
         {
             playerAnim.SetBool("Saltando", true);
@@ -127,6 +133,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //POR AHORA NO SE UTILIZA ESTO
         if (collision.CompareTag("cartel"))
         {
             Nube.gameObject.SetActive(true);
