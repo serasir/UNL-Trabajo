@@ -73,7 +73,6 @@ public class PlayerController : MonoBehaviour
             {
                 SonidoPlayer.PlayOneShot(Death, 1);
             }
-            Debug.Log(vida);
         }
         else if (collision.gameObject.CompareTag("Suelo")) 
         {
@@ -125,7 +124,6 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.58f);
         playerAnim.SetBool("Muerto", false);
-        playerAnim.SetBool("Bien Muerto",true);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
