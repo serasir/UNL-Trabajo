@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bala : MonoBehaviour
 {
     public float velocidad;
+    public int Direccion;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +15,14 @@ public class Bala : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.right * velocidad * Time.deltaTime);
+        if (Direccion == 1)
+        {
+            transform.Translate(Vector2.right * velocidad * Time.deltaTime);
+        }
+        else if (Direccion == 2) 
+        {
+            transform.Translate(Vector2.left * velocidad * Time.deltaTime);
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

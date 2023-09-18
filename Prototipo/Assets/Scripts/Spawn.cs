@@ -5,10 +5,11 @@ using UnityEngine;
 public class Spawn : MonoBehaviour
 {
     public GameObject[] PreFabs;
+    public float TiempoDeSpawn;
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("Invocar",1,1.5f);
+        InvokeRepeating("Invocar",1,TiempoDeSpawn);
     }
 
     // Update is called once per frame
