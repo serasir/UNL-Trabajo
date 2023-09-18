@@ -19,14 +19,22 @@ public class Bala : MonoBehaviour
         {
             transform.Translate(Vector2.right * velocidad * Time.deltaTime);
         }
-        else if (Direccion == 2) 
+        else if (Direccion == 2)
         {
             transform.Translate(Vector2.left * velocidad * Time.deltaTime);
+        }
+        else if (Direccion == 3) 
+        {
+            transform.Translate(Vector2.down * velocidad * Time.deltaTime);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Suelo")) 
+        if (collision.gameObject.CompareTag("Suelo"))
+        {
+            Destroy(gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Enemigo")) 
         {
             Destroy(gameObject);
         }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Meta : MonoBehaviour
@@ -27,7 +25,7 @@ public class Meta : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player")) 
+        if (collision.CompareTag("Player"))
         {
             Ganaste = true;
             PlayerRb.gravityScale = 0;

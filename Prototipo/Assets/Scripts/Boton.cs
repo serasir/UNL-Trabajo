@@ -26,6 +26,7 @@ public class Boton : MonoBehaviour
             BotonAnim.SetBool("Activando", true);
             PuertaAnim.SetBool("Abriendo", true);
             PuertaCollider.enabled = false;
+            Debug.Log("das");
         }
     }
 }

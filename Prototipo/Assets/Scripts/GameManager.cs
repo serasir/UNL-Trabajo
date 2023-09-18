@@ -45,4 +45,8 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+    public void NextLevel() 
+    {
+        SceneManager.LoadScene("Nivel 2");
+    }
 }
