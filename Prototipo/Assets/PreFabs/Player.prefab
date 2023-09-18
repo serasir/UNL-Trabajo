@@ -282,7 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidad: 4
-  FuerzaDeSalto: 6
+  FuerzaDeSalto: 5
   vida: 1
   playerAnim: {fileID: 8131531790814526107}
   pistolPlayer: {fileID: 8131531790871854539}

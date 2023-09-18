@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
         else if (collision.gameObject.CompareTag("Suelo")) 
         {
             EstarEnSuelo = true;
-            FuerzaDeSalto = 4.5f;
+            FuerzaDeSalto = 5;
             numeroSalto = 0;
         }
     }
@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
             playerAnim.SetBool("Muerto", true);
             StartCoroutine(TiempoParaCambiarAnimacion());
             velocidad = 0;
-            FuerzaDeSalto = 0;
+            FuerzaDeSalto = 5;
         }
     }
     IEnumerator TiempoParaCambiarAnimacion() 

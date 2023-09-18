@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PreFabs:
   - {fileID: 4132681228840516216, guid: 235dc9f635f429647872aa8006b3bc64, type: 3}
-  TiempoDeSpawn: 1.5
+  TiempoDeSpawn: 2.5
 --- !u!61 &8565052882917105782
 BoxCollider2D:
   m_ObjectHideFlags: 0
