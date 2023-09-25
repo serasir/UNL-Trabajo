@@ -13,6 +13,7 @@ TagManager:
   - Golpe2
   - Boton
   - Pared
+  - Entrada
   layers:
   - Default
   - TransparentFX
