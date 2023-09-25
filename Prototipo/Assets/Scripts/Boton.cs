@@ -21,7 +21,7 @@ public class Boton : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player")) 
+        if (collision.CompareTag("Player") || collision.CompareTag("Bala")) 
         {
             BotonAnim.SetBool("Activando", true);
             PuertaAnim.SetBool("Abriendo", true);
