@@ -10,15 +10,20 @@ public class GameManager : MonoBehaviour
     //PUBLIC
     public Image CartelVictoria;
     public Image CartelDerrota;
+    public Image BarraDeVidaJefe;
     
     //PRIVATE
     private PlayerController PlayerScrp;
     private Meta MetaScrp;
+    private FollowPlayer CamaraScpr;
+    private Jefe jefeScrp;
     // Start is called before the first frame update
     void Start()
     {
         PlayerScrp = GameObject.Find("Player").GetComponent<PlayerController>();
         MetaScrp = GameObject.Find("Cartel").GetComponent<Meta>();
+        CamaraScpr = GameObject.Find("Main Camera").GetComponent<FollowPlayer>();
+        jefeScrp = GameObject.Find("Jefe").GetComponent<Jefe>();
     }
 
     // Update is called once per frame
@@ -26,6 +31,15 @@ public class GameManager : MonoBehaviour
     {
         Derrota();
         Victoria();
+        if (CamaraScpr.enJefe == true) 
+        {
+            BossFight();
+        }
+    }
+    private void BossFight() 
+    {
+        BarraDeVidaJefe.gameObject.SetActive(true);
+        BarraDeVidaJefe.fillAmount = jefeScrp.vidaActual / jefeScrp.vidaMaxima;
     }
     private void Derrota() 
     {

@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRB;
     private int numeroSalto=0;
     private bool TenerPistola = false;
+    private FollowPlayer CamaraScrp;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
         playerRB = GetComponent<Rigidbody2D>();
         playerAnim = GameObject.Find("Player").GetComponent<Animator>();
         SonidoPlayer = GetComponent<AudioSource>();
+        CamaraScrp = GameObject.Find("Main Camera").GetComponent<FollowPlayer>();
     }
 
     // Update is called once per frame
@@ -139,7 +141,12 @@ public class PlayerController : MonoBehaviour
             Nube.gameObject.SetActive(true);
             StartCoroutine(TiempoParaApagarCartel());
         }
-        else if (collision.CompareTag("Pistola")) 
+        else if (collision.CompareTag("Entrada")) 
+        {
+            CamaraScrp.enJefe = true;
+            Debug.Log("comova");
+        }
+        else if (collision.CompareTag("Pistola"))
         {
             pistolPlayer.SetActive(true);
             Destroy(PistolaFalsa);

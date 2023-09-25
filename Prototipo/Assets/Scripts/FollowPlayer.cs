@@ -7,23 +7,30 @@ public class FollowPlayer : MonoBehaviour
     public GameObject Player;
     private Vector3 PosicionCamara;
     private float PosicionX = 1.79f;
+    public bool enJefe;
+    public Camera Camara2d;
     // Start is called before the first frame update
     void Start()
     {
-        PosicionCamara = new Vector3(PosicionX, 0, -9.9f);
+
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
+        PosicionCamara = new Vector3(PosicionX, 0, -9.9f);
         transform.position = Player.transform.position + PosicionCamara;
-        if (Input.GetKeyDown(KeyCode.D)) 
+        if (enJefe == false)
         {
-            PosicionX = 1.79f;
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                PosicionX = 1.79f;
+            }
         }
-        if (Input.GetKeyDown(KeyCode.A)) 
+        else if (enJefe == true) 
         {
-            PosicionX = -1.79f;
+            Camara2d.orthographicSize = 9; 
+            PosicionX = 12.50f;
         }
     }
 }
