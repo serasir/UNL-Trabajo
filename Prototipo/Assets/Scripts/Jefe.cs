@@ -14,6 +14,8 @@ public class Jefe : MonoBehaviour
     public GameObject[] PreFabs;
     public GameObject BarrilToxico;
     public GameObject spawn;
+    //SUELO Q SPAWNEA DESPUES DE MATAR AL JEFE
+    public GameObject Suelo;
     //BOOLS PARA SABER SI VA A SUBIR O BAJAR
     private bool Arriba;
     private bool Abajo;
@@ -44,28 +46,30 @@ public class Jefe : MonoBehaviour
             transform.Translate(Vector2.up * velocidad * Time.deltaTime);
         }
         //ABAJO
-        else if (Abajo == true) 
+        else if (Abajo == true)
         {
             transform.Translate(Vector2.down * velocidad * Time.deltaTime);
         }
-        if (CamaraScrp.enJefe == true) 
+        if (CamaraScrp.enJefe == true)
         {
             Ataques();
             BarraDeVidas.gameObject.SetActive(true);
-            BarraDeVidas.fillAmount=vidaActual / vidaMaxima;
+            BarraDeVidas.fillAmount = vidaActual / vidaMaxima;
         }
         Muerte();
     }
-    private void Muerte() 
+    private void Muerte()
     {
-        if (vidaActual == 0) 
+        if (vidaActual == 0)
         {
+            BarrilToxico.SetActive(false);
+            Suelo.SetActive(true);
             Destroy(gameObject);
         }
     }
-    private void Ataques() 
+    private void Ataques()
     {
-        switch (Golpe) 
+        switch (Golpe)
         {
             case 1:
                 StartCoroutine(Disparo());
@@ -94,7 +98,7 @@ public class Jefe : MonoBehaviour
             Abajo = true;
         }
         //SUBE
-        else if (collision.CompareTag("Golpe2")) 
+        else if (collision.CompareTag("Golpe2"))
         {
             Arriba = true;
             Abajo = false;
@@ -103,21 +107,21 @@ public class Jefe : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //RECIBIR GOLPE + ANIMACION
-        if (collision.gameObject.CompareTag("Bala")) 
+        if (collision.gameObject.CompareTag("Bala"))
         {
             vidaActual -= 1;
             JefeAnim.SetBool("Golpe", true);
             StartCoroutine(TiempoDeAnimacion());
         }
     }
-    IEnumerator TiempoDeAnimacion() 
+    IEnumerator TiempoDeAnimacion()
     {
         yield return new WaitForSeconds(1);
         JefeAnim.SetBool("Golpe", false);
         JefeAnim.SetBool("Idle", true);
     }
     //GOLPES DEL JEFE
-    IEnumerator Descanso() 
+    IEnumerator Descanso()
     {
         yield return new WaitForSeconds(TiempoDeEspera);
         BarrilToxico.SetActive(false);
@@ -125,17 +129,17 @@ public class Jefe : MonoBehaviour
         Golpe = GolpeRandom;
         Debug.Log(Golpe);
     }
-    IEnumerator Disparo() 
+    IEnumerator Disparo()
     {
-        for (int i = 0; i < 3; i++) 
+        for (int i = 0; i < 3; i++)
         {
             yield return new WaitForSeconds(2.5f);
             Instantiate(PreFabs[0], transform.position, PreFabs[0].transform.rotation);
         }
     }
-    IEnumerator Barril() 
+    IEnumerator Barril()
     {
-        for (int i = 0; i < 2; i++) 
+        for (int i = 0; i < 2; i++)
         {
             BarrilToxico.SetActive(true);
             yield return new WaitForSeconds(2f);

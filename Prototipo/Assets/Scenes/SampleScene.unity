@@ -214,7 +214,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &519420029
 AudioListener:
   m_ObjectHideFlags: 0
@@ -302,6 +302,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 905685075}
+  enJefe: 0
+  Camara2d: {fileID: 0}
 --- !u!1 &532811397
 GameObject:
   m_ObjectHideFlags: 0
@@ -21923,6 +21925,10 @@ PrefabInstance:
     - target: {fileID: 4100451661620746434, guid: 897c36e2ef69b074db90b6a184bab5f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7615466926867951431, guid: 897c36e2ef69b074db90b6a184bab5f2, type: 3}
+      propertyPath: nivel
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7615466926867951431, guid: 897c36e2ef69b074db90b6a184bab5f2, type: 3}
       propertyPath: CartelDerrota

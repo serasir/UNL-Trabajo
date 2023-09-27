@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     //PUBLIC
     public Image CartelVictoria;
     public Image CartelDerrota;
-    
+    public int nivel;
     //PRIVATE
     private PlayerController PlayerScrp;
     private Meta MetaScrp;
@@ -47,6 +47,6 @@ public class GameManager : MonoBehaviour
     }
     public void NextLevel() 
     {
-        SceneManager.LoadScene("Nivel 2");
+        SceneManager.LoadScene(nivel);
     }
 }
