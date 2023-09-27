@@ -12,6 +12,8 @@ public class Jefe : MonoBehaviour
     public Image BarraDeVidas;
     //OBJETOS A DISPARAR
     public GameObject[] PreFabs;
+    public GameObject BarrilToxico;
+    public GameObject spawn;
     //BOOLS PARA SABER SI VA A SUBIR O BAJAR
     private bool Arriba;
     private bool Abajo;
@@ -72,8 +74,9 @@ public class Jefe : MonoBehaviour
                 StartCoroutine(Descanso());
                 break;
             case 2:
-                
+                StartCoroutine(Barril());
                 Golpe = 0;
+                TiempoDeEspera = 5.5f;
                 StartCoroutine(Descanso());
                 break;
             case 3:
@@ -117,9 +120,10 @@ public class Jefe : MonoBehaviour
     IEnumerator Descanso() 
     {
         yield return new WaitForSeconds(TiempoDeEspera);
-        Debug.Log("god");
-        int GolpeRandom = Random.Range(0, 3);
+        BarrilToxico.SetActive(false);
+        int GolpeRandom = Random.Range(1, 3);
         Golpe = GolpeRandom;
+        Debug.Log(Golpe);
     }
     IEnumerator Disparo() 
     {
@@ -127,6 +131,15 @@ public class Jefe : MonoBehaviour
         {
             yield return new WaitForSeconds(2.5f);
             Instantiate(PreFabs[0], transform.position, PreFabs[0].transform.rotation);
+        }
+    }
+    IEnumerator Barril() 
+    {
+        for (int i = 0; i < 2; i++) 
+        {
+            BarrilToxico.SetActive(true);
+            yield return new WaitForSeconds(2f);
+            Instantiate(PreFabs[1], spawn.transform.position, PreFabs[1].transform.rotation);
         }
     }
 }
