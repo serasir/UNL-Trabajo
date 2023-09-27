@@ -141,7 +141,7 @@ public class PlayerController : MonoBehaviour
             Nube.gameObject.SetActive(true);
             StartCoroutine(TiempoParaApagarCartel());
         }
-        else if (collision.CompareTag("Entrada")) 
+        else if (collision.CompareTag("Entrada"))
         {
             CamaraScrp.enJefe = true;
             Debug.Log("comova");
@@ -151,6 +151,14 @@ public class PlayerController : MonoBehaviour
             pistolPlayer.SetActive(true);
             Destroy(PistolaFalsa);
             TenerPistola = true;
+        }
+        else if (collision.CompareTag("Enemigo")) 
+        {
+            vida -= 1;
+            if (vida == 0)
+            {
+                SonidoPlayer.PlayOneShot(Death, 1);
+            }
         }
     }
     IEnumerator TiempoParaApagarCartel() 
