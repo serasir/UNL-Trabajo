@@ -14,6 +14,7 @@ public class Jefe : MonoBehaviour
     public GameObject[] PreFabs;
     public GameObject BarrilToxico;
     public GameObject spawn;
+    public GameObject spawSuperBala;
     //SUELO Q SPAWNEA DESPUES DE MATAR AL JEFE
     public GameObject Suelo;
     //BOOLS PARA SABER SI VA A SUBIR O BAJAR
@@ -29,7 +30,7 @@ public class Jefe : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Golpe = 1;
+        Golpe = 3;
         CamaraScrp = GameObject.Find("Main Camera").GetComponent<FollowPlayer>();
         vidaActual = vidaMaxima;
         Arriba = true;
@@ -84,7 +85,9 @@ public class Jefe : MonoBehaviour
                 StartCoroutine(Descanso());
                 break;
             case 3:
+                StartCoroutine(SuperBala());
                 Golpe = 0;
+                TiempoDeEspera = 20;
                 StartCoroutine(Descanso());
                 break;
         }
@@ -145,5 +148,10 @@ public class Jefe : MonoBehaviour
             yield return new WaitForSeconds(2f);
             Instantiate(PreFabs[1], spawn.transform.position, PreFabs[1].transform.rotation);
         }
+    }
+    IEnumerator SuperBala() 
+    {
+        yield return new WaitForSeconds(1f);
+        Instantiate(PreFabs[2], spawSuperBala.transform.position, PreFabs[2].transform.rotation);
     }
 }
