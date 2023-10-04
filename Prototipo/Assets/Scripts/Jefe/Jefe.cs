@@ -10,6 +10,7 @@ public class Jefe : MonoBehaviour
     public int vidaMaxima;
     public int vidaActual;
     public Image BarraDeVidas;
+    public Image CartelDisparar;
     //OBJETOS A DISPARAR
     public GameObject[] PreFabs;
     public GameObject BarrilToxico;
@@ -27,10 +28,11 @@ public class Jefe : MonoBehaviour
     //GOLPE QUE VA A HACER EL JEFE
     private int Golpe;
     private float TiempoDeEspera;
+    private int repeticionDeGolpe;
     // Start is called before the first frame update
     void Start()
     {
-        Golpe = 3;
+        Golpe = 1;
         CamaraScrp = GameObject.Find("Main Camera").GetComponent<FollowPlayer>();
         vidaActual = vidaMaxima;
         Arriba = true;
@@ -76,18 +78,21 @@ public class Jefe : MonoBehaviour
                 StartCoroutine(Disparo());
                 Golpe = 0;
                 TiempoDeEspera = 9;
+                repeticionDeGolpe = 2;
                 StartCoroutine(Descanso());
                 break;
             case 2:
                 StartCoroutine(Barril());
                 Golpe = 0;
                 TiempoDeEspera = 5.5f;
+                repeticionDeGolpe = 4;
                 StartCoroutine(Descanso());
                 break;
             case 3:
                 StartCoroutine(SuperBala());
                 Golpe = 0;
                 TiempoDeEspera = 20;
+                repeticionDeGolpe = 6;
                 StartCoroutine(Descanso());
                 break;
         }
@@ -128,7 +133,20 @@ public class Jefe : MonoBehaviour
     {
         yield return new WaitForSeconds(TiempoDeEspera);
         BarrilToxico.SetActive(false);
+        CartelDisparar.gameObject.SetActive(false);
         int GolpeRandom = Random.Range(1, 3);
+        if (repeticionDeGolpe / 2 == 1)
+        {
+            GolpeRandom = Random.Range(2, 3);
+        }
+        else if (repeticionDeGolpe / 2 == 2)
+        {
+            GolpeRandom = 3;
+        }
+        else if (repeticionDeGolpe / 2 == 3) 
+        {
+            GolpeRandom = Random.Range(1, 2);
+        }
         Golpe = GolpeRandom;
         Debug.Log(Golpe);
     }
@@ -151,6 +169,7 @@ public class Jefe : MonoBehaviour
     }
     IEnumerator SuperBala() 
     {
+        CartelDisparar.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
         Instantiate(PreFabs[2], spawSuperBala.transform.position, PreFabs[2].transform.rotation);
     }

@@ -21,7 +21,6 @@ public class PlayerController : MonoBehaviour
     public GameObject[] PreFabBala;
     public Image Nube;
     public AudioSource SonidoPlayer;
-
     //PRIVATE
     private bool EstarEnSuelo;
     private float HorizontalInput;
@@ -29,7 +28,6 @@ public class PlayerController : MonoBehaviour
     private int numeroSalto=0;
     private bool TenerPistola = false;
     private FollowPlayer CamaraScrp;
-
     // Start is called before the first frame update
     void Start()
     {

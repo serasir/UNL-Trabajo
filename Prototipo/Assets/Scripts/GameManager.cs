@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     //PUBLIC
     public Image CartelVictoria;
     public Image CartelDerrota;
+    public Image Logro;
     public int nivel;
     //PRIVATE
     private PlayerController PlayerScrp;
@@ -38,6 +39,8 @@ public class GameManager : MonoBehaviour
     {
         if (MetaScrp.Ganaste == true) 
         {
+            Logro.gameObject.SetActive(true);
+            StartCoroutine(TiempoDeLogro());
             CartelVictoria.gameObject.SetActive(true);
         }
     }
@@ -48,5 +51,10 @@ public class GameManager : MonoBehaviour
     public void NextLevel() 
     {
         SceneManager.LoadScene(nivel);
+    }
+    IEnumerator TiempoDeLogro() 
+    {
+        yield return new WaitForSeconds(1.5f);
+        Destroy(Logro.gameObject);
     }
 }
