@@ -28,13 +28,21 @@ public class PlayerController : MonoBehaviour
     private int numeroSalto=0;
     private bool TenerPistola = false;
     private FollowPlayer CamaraScrp;
+    private GameManager gameManager;
+    //CODIGO PARA DIFERENTES SKINS COMO RECOMPENSAS DE LOGROS
+    public AnimatorOverrideController BlackSkin;
+    private RuntimeAnimatorController OriginalSkin;
+    private int numeroDeLogros;
     // Start is called before the first frame update
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
         playerAnim = GameObject.Find("Player").GetComponent<Animator>();
+        OriginalSkin = playerAnim.runtimeAnimatorController;
         SonidoPlayer = GetComponent<AudioSource>();
         CamaraScrp = GameObject.Find("Main Camera").GetComponent<FollowPlayer>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        numeroDeLogros = PlayerPrefs.GetInt("Logros");
     }
 
     // Update is called once per frame
@@ -66,6 +74,11 @@ public class PlayerController : MonoBehaviour
         {
             Instantiate(PreFabBala[0], SalidaDeBala.transform.position, SalidaDeBala.transform.rotation);
             SonidoPlayer.PlayOneShot(Disparo, 1);
+        }
+        //CAMBIAR SKIN
+        if (Input.GetKeyDown(KeyCode.J)&& numeroDeLogros>1) 
+        {
+            playerAnim.runtimeAnimatorController = BlackSkin as RuntimeAnimatorController;
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)

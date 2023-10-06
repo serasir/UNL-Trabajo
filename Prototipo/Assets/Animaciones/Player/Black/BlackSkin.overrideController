@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BlackSkin
+  m_Controller: {fileID: 9100000, guid: 28a66fa927545b64b83f23d77a852938, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 9188e63cd9a190b4ea52b5a2501b5a11, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c4505e7c230263c49af130e19182c3c7, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: c889ea981a117bd45b8fe644738f3459, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: fbe5a5a823a058941be9722834654d84, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 2a5018b9d71d0f640a9c361e55a6cdd2, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 60fb7d294e1a89a4ea1bb2a918c224b6, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: d31b51ef8765c4341a8927e01fde29eb, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 33841f02db53cc84c90c6620ade75d6a, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: e40ab9a8cdbe4e842b1e9b7ae7946652, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 88dad2fecba1ac74da026b914e220b6e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: f2bd0746f0b192649aff2f3c6e4de321, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 67313eac32ce6e04a89e5e3f266c8139, type: 2}

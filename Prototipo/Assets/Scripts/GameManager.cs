@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public Image CartelDerrota;
     public Image Logro;
     public int nivel;
+    public int CantidadDeLogros;
     //PRIVATE
     private PlayerController PlayerScrp;
     private Meta MetaScrp;
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     {
         Derrota();
         Victoria();
+        GuardarNumero();
     }
     private void Derrota() 
     {
@@ -42,6 +44,7 @@ public class GameManager : MonoBehaviour
             Logro.gameObject.SetActive(true);
             StartCoroutine(TiempoDeLogro());
             CartelVictoria.gameObject.SetActive(true);
+            CantidadDeLogros +=1;
         }
     }
     public void ReiniciarLVL() 
@@ -51,6 +54,11 @@ public class GameManager : MonoBehaviour
     public void NextLevel() 
     {
         SceneManager.LoadScene(nivel);
+    }
+    public void GuardarNumero() 
+    {
+        PlayerPrefs.SetInt("Logros", CantidadDeLogros);
+        PlayerPrefs.Save();
     }
     IEnumerator TiempoDeLogro() 
     {

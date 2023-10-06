@@ -3907,6 +3907,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8131531790814526106, guid: b73ab6a8388060e46809021cdc0614ce, type: 3}
+      propertyPath: BlackSkin
+      value: 
+      objectReference: {fileID: 22100000, guid: de628e757cc249b4db2a1b63d71ce2e2, type: 2}
+    - target: {fileID: 8131531790814526106, guid: b73ab6a8388060e46809021cdc0614ce, type: 3}
       propertyPath: PistolaFalsa
       value: 
       objectReference: {fileID: 1044599513}

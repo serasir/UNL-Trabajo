@@ -296,6 +296,8 @@ MonoBehaviour:
   - {fileID: 1478718444037446455, guid: d0082f46b06cb894c805151d566b4029, type: 3}
   Nube: {fileID: 0}
   SonidoPlayer: {fileID: 0}
+  BlackSkin: {fileID: 22100000, guid: de628e757cc249b4db2a1b63d71ce2e2, type: 2}
+  CantidadDeLogros: 0
 --- !u!95 &8131531790814526107
 Animator:
   serializedVersion: 5
