@@ -22015,7 +22015,7 @@ PrefabInstance:
       objectReference: {fileID: 470979801}
     - target: {fileID: 7615466926867951431, guid: 897c36e2ef69b074db90b6a184bab5f2, type: 3}
       propertyPath: nivel
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7615466926867951431, guid: 897c36e2ef69b074db90b6a184bab5f2, type: 3}
       propertyPath: CartelDerrota
