@@ -9,8 +9,8 @@ public class Jefe : MonoBehaviour
     public float velocidad;
     public int vidaMaxima;
     public int vidaActual;
-    public Image BarraDeVidas;
     public Image CartelDisparar;
+    public GameObject BarVida;
     //OBJETOS A DISPARAR
     public GameObject[] PreFabs;
     public GameObject BarrilToxico;
@@ -29,6 +29,8 @@ public class Jefe : MonoBehaviour
     private int Golpe;
     private float TiempoDeEspera;
     private int repeticionDeGolpe;
+    //CONTROLAR BARRA DE VIDA
+    public BarraVidaJefe BarraVida;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,7 @@ public class Jefe : MonoBehaviour
         Arriba = true;
         Abajo = false;
         JefeAnim = GameObject.Find("Jefe").GetComponent<Animator>();
+        BarraVida.IniciarBarra(vidaActual);
     }
 
     // Update is called once per frame
@@ -56,8 +59,7 @@ public class Jefe : MonoBehaviour
         if (CamaraScrp.enJefe == true)
         {
             Ataques();
-            BarraDeVidas.gameObject.SetActive(true);
-            BarraDeVidas.fillAmount = vidaActual / vidaMaxima;
+            BarVida.SetActive(true);
         }
         Muerte();
     }
@@ -67,6 +69,7 @@ public class Jefe : MonoBehaviour
         {
             BarrilToxico.SetActive(false);
             Suelo.SetActive(true);
+            BarVida.SetActive(false);
             Destroy(gameObject);
         }
     }
@@ -117,6 +120,7 @@ public class Jefe : MonoBehaviour
         //RECIBIR GOLPE + ANIMACION
         if (collision.gameObject.CompareTag("Bala"))
         {
+            BarraVida.CambiarVidaActual(vidaActual);
             vidaActual -= 1;
             JefeAnim.SetBool("Golpe", true);
             StartCoroutine(TiempoDeAnimacion());
