@@ -94,7 +94,7 @@ public class Jefe : MonoBehaviour
             case 3:
                 StartCoroutine(SuperBala());
                 Golpe = 0;
-                TiempoDeEspera = 20;
+                TiempoDeEspera = 15;
                 repeticionDeGolpe = 6;
                 StartCoroutine(Descanso());
                 break;
