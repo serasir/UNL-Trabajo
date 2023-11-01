@@ -18,6 +18,9 @@ TagManager:
   - Referencia(Fondo2)
   - Referencia(Fondo3)
   - Referencia(Fondo4)
+  - PortalGun
+  - BalaPortal
+  - Portal
   layers:
   - Default
   - TransparentFX

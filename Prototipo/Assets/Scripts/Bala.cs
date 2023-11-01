@@ -28,6 +28,17 @@ public class Bala : MonoBehaviour
             transform.Translate(Vector2.down * velocidad * Time.deltaTime);
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Portal"))
+        {
+            Destroy(gameObject);
+        }
+        else if (collision.CompareTag("Enemigo")) 
+        {
+            Destroy(gameObject);
+        }
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Suelo") || collision.gameObject.CompareTag("Pared"))

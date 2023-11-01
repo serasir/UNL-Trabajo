@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public Animator playerAnim;
     public GameObject pistolPlayer;
     public GameObject PistolaFalsa;
+    public GameObject PistolaPortal;
+    public GameObject PistolaPortalFalsa;
     public AudioClip Disparo;
     public AudioClip Death;
     public AudioClip Salto;
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRB;
     private int numeroSalto=0;
     private bool TenerPistola = false;
+    private bool TenerPistolaPortal = false;
     private FollowPlayer CamaraScrp;
     private GameManager gameManager;
     //CODIGO PARA DIFERENTES SKINS COMO RECOMPENSAS DE LOGROS
@@ -73,6 +76,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K) && TenerPistola == true) 
         {
             Instantiate(PreFabBala[0], SalidaDeBala.transform.position, SalidaDeBala.transform.rotation);
+            SonidoPlayer.PlayOneShot(Disparo, 1);
+        }
+        if (Input.GetKeyDown(KeyCode.K) && TenerPistolaPortal == true) 
+        {
+            Instantiate(PreFabBala[1], SalidaDeBala.transform.position, SalidaDeBala.transform.rotation);
             SonidoPlayer.PlayOneShot(Disparo, 1);
         }
         //CAMBIAR SKIN
@@ -157,13 +165,23 @@ public class PlayerController : MonoBehaviour
             CamaraScrp.enJefe = true;
             Debug.Log("comova");
         }
+        //OBTENER PISTOLA
         else if (collision.CompareTag("Pistola"))
         {
             pistolPlayer.SetActive(true);
             Destroy(PistolaFalsa);
             TenerPistola = true;
+            TenerPistolaPortal = false;
         }
-        else if (collision.CompareTag("Enemigo")) 
+        //OBTENER PORTALGUN
+        else if (collision.CompareTag("PortalGun")) 
+        {
+            PistolaPortal.SetActive(true);
+            Destroy(PistolaPortalFalsa);
+            TenerPistolaPortal = true;
+            TenerPistola = false;
+        }
+        else if (collision.CompareTag("Enemigo"))
         {
             vida -= 1;
             if (vida == 0)
