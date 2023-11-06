@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     private int numeroSalto=0;
     private bool TenerPistola = false;
     private bool TenerPistolaPortal = false;
+    private bool CambiarPistola = false;
     private FollowPlayer CamaraScrp;
     private GameManager gameManager;
     //CODIGO PARA DIFERENTES SKINS COMO RECOMPENSAS DE LOGROS
@@ -72,13 +73,25 @@ public class PlayerController : MonoBehaviour
         {
             Application.Quit();
         }
-        //DISPARAR
-        if (Input.GetKeyDown(KeyCode.K) && TenerPistola == true) 
+        //CAMBIAR ARMA Y DISPARAR
+        if (TenerPistola==true && Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            CambiarPistola = false;
+            pistolPlayer.SetActive(true);
+            PistolaPortal.SetActive(false);
+        }
+        else if (TenerPistolaPortal==true && Input.GetKeyDown(KeyCode.Alpha2)) 
+        {
+            CambiarPistola = true;
+            PistolaPortal.SetActive(true);
+            pistolPlayer.SetActive(false);
+        }
+        if (Input.GetKeyDown(KeyCode.K) && TenerPistola == true && CambiarPistola==false) 
         {
             Instantiate(PreFabBala[0], SalidaDeBala.transform.position, SalidaDeBala.transform.rotation);
             SonidoPlayer.PlayOneShot(Disparo, 1);
         }
-        if (Input.GetKeyDown(KeyCode.K) && TenerPistolaPortal == true) 
+        if (Input.GetKeyDown(KeyCode.K) && TenerPistolaPortal == true && CambiarPistola==true) 
         {
             Instantiate(PreFabBala[1], SalidaDeBala.transform.position, SalidaDeBala.transform.rotation);
             SonidoPlayer.PlayOneShot(Disparo, 1);
@@ -169,17 +182,19 @@ public class PlayerController : MonoBehaviour
         else if (collision.CompareTag("Pistola"))
         {
             pistolPlayer.SetActive(true);
+            PistolaPortal.SetActive(false);
             Destroy(PistolaFalsa);
             TenerPistola = true;
-            TenerPistolaPortal = false;
+            CambiarPistola = false;
         }
         //OBTENER PORTALGUN
         else if (collision.CompareTag("PortalGun")) 
         {
             PistolaPortal.SetActive(true);
+            pistolPlayer.SetActive(false);
             Destroy(PistolaPortalFalsa);
             TenerPistolaPortal = true;
-            TenerPistola = false;
+            CambiarPistola = true;
         }
         else if (collision.CompareTag("Enemigo"))
         {
