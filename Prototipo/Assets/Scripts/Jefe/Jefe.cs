@@ -65,7 +65,7 @@ public class Jefe : MonoBehaviour
     }
     private void Muerte()
     {
-        if (vidaActual == 0)
+        if (vidaActual == 0 || vidaActual<0)
         {
             BarrilToxico.SetActive(false);
             Suelo.SetActive(true);

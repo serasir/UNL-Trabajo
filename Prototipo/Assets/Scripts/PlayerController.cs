@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
     public GameObject[] PreFabBala;
     public Image Nube;
     public AudioSource SonidoPlayer;
+    public Image HudArma;
+    public Image PistolaHUD;
+    public Image PortalHUD;
     //PRIVATE
     private bool EstarEnSuelo;
     private float HorizontalInput;
@@ -33,6 +36,7 @@ public class PlayerController : MonoBehaviour
     private bool CambiarPistola = false;
     private FollowPlayer CamaraScrp;
     private GameManager gameManager;
+    private Jefe2 boss;
     //CODIGO PARA DIFERENTES SKINS COMO RECOMPENSAS DE LOGROS
     public AnimatorOverrideController BlackSkin;
     private RuntimeAnimatorController OriginalSkin;
@@ -47,6 +51,7 @@ public class PlayerController : MonoBehaviour
         CamaraScrp = GameObject.Find("Main Camera").GetComponent<FollowPlayer>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         numeroDeLogros = PlayerPrefs.GetInt("Logros");
+        boss = GameObject.Find("JEFE 2").GetComponent<Jefe2>();
     }
 
     // Update is called once per frame
@@ -76,12 +81,16 @@ public class PlayerController : MonoBehaviour
         //CAMBIAR ARMA Y DISPARAR
         if (TenerPistola==true && Input.GetKeyDown(KeyCode.Alpha1))
         {
+            PistolaHUD.gameObject.SetActive(true);
+            PortalHUD.gameObject.SetActive(false);
             CambiarPistola = false;
             pistolPlayer.SetActive(true);
             PistolaPortal.SetActive(false);
         }
         else if (TenerPistolaPortal==true && Input.GetKeyDown(KeyCode.Alpha2)) 
         {
+            PistolaHUD.gameObject.SetActive(false);
+            PortalHUD.gameObject.SetActive(true);
             CambiarPistola = true;
             PistolaPortal.SetActive(true);
             pistolPlayer.SetActive(false);
@@ -181,6 +190,9 @@ public class PlayerController : MonoBehaviour
         //OBTENER PISTOLA
         else if (collision.CompareTag("Pistola"))
         {
+            HudArma.gameObject.SetActive(true);
+            PistolaHUD.gameObject.SetActive(true);
+            PortalHUD.gameObject.SetActive(false);
             pistolPlayer.SetActive(true);
             PistolaPortal.SetActive(false);
             Destroy(PistolaFalsa);
@@ -190,6 +202,9 @@ public class PlayerController : MonoBehaviour
         //OBTENER PORTALGUN
         else if (collision.CompareTag("PortalGun")) 
         {
+            HudArma.gameObject.SetActive(true);
+            PistolaHUD.gameObject.SetActive(false);
+            PortalHUD.gameObject.SetActive(true);
             PistolaPortal.SetActive(true);
             pistolPlayer.SetActive(false);
             Destroy(PistolaPortalFalsa);
@@ -203,6 +218,10 @@ public class PlayerController : MonoBehaviour
             {
                 SonidoPlayer.PlayOneShot(Death, 1);
             }
+        }
+        if (collision.CompareTag("TriggerJefe")) 
+        {
+            boss.EnPelea = true;
         }
     }
     IEnumerator TiempoParaApagarCartel() 

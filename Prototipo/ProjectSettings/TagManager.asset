@@ -21,6 +21,7 @@ TagManager:
   - PortalGun
   - BalaPortal
   - Portal
+  - TriggerJefe
   layers:
   - Default
   - TransparentFX

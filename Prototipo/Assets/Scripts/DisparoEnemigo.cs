@@ -27,5 +27,9 @@ public class DisparoEnemigo : MonoBehaviour
         {
             transform.Translate(Vector2.down * velocidad * Time.deltaTime);
         }
+        else if (Direccion == 4) 
+        {
+            transform.Translate(Vector2.up * velocidad * Time.deltaTime);
+        }
     }
 }
