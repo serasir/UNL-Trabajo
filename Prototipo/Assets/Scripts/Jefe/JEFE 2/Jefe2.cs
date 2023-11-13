@@ -8,6 +8,9 @@ public class Jefe2 : MonoBehaviour
     private int Peligro;
     private int Golpe;
     private int TiempoDeEspera;
+    private int Repeticion1;
+    private int Repeticion2;
+    private int Repeticion3;
     //PUBLIC
     public int VidaMaxima;
     public int VidaActual;
@@ -15,6 +18,7 @@ public class Jefe2 : MonoBehaviour
     public GameObject BarVida;
     public BarraVidaJefe BarraVida;
     public GameObject PosicionInicial;
+    public GameObject PortalFinal;
     //PRIMER GOLPE
     public GameObject Arriba;
     public GameObject SueloArriba;
@@ -30,6 +34,12 @@ public class Jefe2 : MonoBehaviour
     //SEGUNDO GOLPE
     public GameObject Guia1;
     public GameObject Guia2;
+
+    //TERCER GOLPE
+    public GameObject Portal3ATK;
+    public GameObject SueloMedio;
+    public GameObject TechoMedio;
+    public GameObject PosicionTercerAtaque;
     //ANGULO Z DESEADO PARA ROTAR
     private float nuevoAnguloZ = 53.5f;
     private float SegundoAnguloz = -214.917f;
@@ -38,9 +48,12 @@ public class Jefe2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Golpe = 2;
+        Golpe = 3;
         VidaActual = VidaMaxima;
         BarraVida.IniciarBarra(VidaActual);
+        Repeticion1 = 0;
+        Repeticion2 = 0;
+        Repeticion3 = 0;
     }
 
 
@@ -68,17 +81,29 @@ public class Jefe2 : MonoBehaviour
         {
             case 1:
                 StartCoroutine(TPS());
+                Repeticion1++;
                 Golpe = 0;
                 TiempoDeEspera = 6;
                 StartCoroutine(Descanso());
                 break;
             case 2:
                 StartCoroutine(Disaparo());
+                Repeticion2++;
                 Golpe = 0;
                 TiempoDeEspera=5;
                 StartCoroutine(Descanso());
                 break;
             case 3:
+                StartCoroutine(SuperBala());
+                Repeticion3++;
+                Golpe = 0;
+                TiempoDeEspera = 20;
+                StartCoroutine(Descanso());
+                break;
+            case 4:
+                Golpe = 0;
+                TiempoDeEspera = 1;
+                StartCoroutine(Descanso());
                 break;
 
         }
@@ -89,6 +114,18 @@ public class Jefe2 : MonoBehaviour
         {
             Destroy(gameObject);
             BarVida.SetActive(false);
+            PortalFinal.SetActive(true);
+            SueloArriba.SetActive(false);
+            PortalesArriba.SetActive(false);
+            Warning1.SetActive(false);
+            Warning2.SetActive(false);
+            WarningGeneral.SetActive(false);
+            Spikes.SetActive(false);
+            SpikeArriba1.SetActive(false);
+            SpikeArriba2.SetActive(false);
+            Portal3ATK.SetActive(false);
+            SueloMedio.SetActive(false);
+            TechoMedio.SetActive(false);
         }
     }
     IEnumerator Descanso() 
@@ -104,16 +141,35 @@ public class Jefe2 : MonoBehaviour
         Spikes.SetActive(false);
         SpikeArriba1.SetActive(false);
         SpikeArriba2.SetActive(false);
+        Portal3ATK.SetActive(false);
+        SueloMedio.SetActive(false);
+        TechoMedio.SetActive(false);
         Vector3 nuevaRotacion = transform.rotation.eulerAngles;
         nuevaRotacion.z = AnguloZ;
         transform.rotation = Quaternion.Euler(nuevaRotacion);
         yield return new WaitForSeconds(2.5f);
-        int GolpeRandom = Random.Range(1, 3);
+        int GolpeRandom = Random.Range(1, 4);
         Golpe = GolpeRandom;
+        if (Repeticion2 == 2)
+        {
+            Repeticion2 = 0;
+            Golpe = 1;
+        }
+        else if (Repeticion1 == 2)
+        {
+            Golpe = Random.Range(2, 4);
+            Repeticion1 = 0;
+        }
+        else if (Repeticion3 == 2) 
+        {
+            Golpe = Random.Range(1, 4);
+            Repeticion3 = 0;
+        }
+        Debug.Log(Golpe);
     }
     IEnumerator TPS() 
     {
-        Peligro = Random.Range(1, 2);
+        Peligro = Random.Range(1, 3);
         transform.position = Arriba.transform.position;
         SueloArriba.SetActive(true);
         PortalesArriba.SetActive(true);
@@ -159,5 +215,16 @@ public class Jefe2 : MonoBehaviour
         {
             Instantiate(PreFab[1], transform.position, PreFab[1].transform.rotation);
         }
+    }
+    IEnumerator SuperBala() 
+    {
+        transform.position = PosicionTercerAtaque.transform.position;
+        Portal3ATK.SetActive(true);
+        SueloMedio.SetActive(true);
+        TechoMedio.SetActive(true);
+        WarningGeneral.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        Spikes.SetActive(true);
+        Instantiate(PreFab[2], transform.position, PreFab[2].transform.rotation);
     }
 }

@@ -7,6 +7,7 @@ public class SuperBala : MonoBehaviour
 {
     public float velocidad;
     public int vida;
+    public int direccion;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +16,14 @@ public class SuperBala : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.left * velocidad * Time.deltaTime);
+        if (direccion == 1)
+        {
+            transform.Translate(Vector2.left * velocidad * Time.deltaTime);
+        }
+        else if (direccion == 2)
+        {
+            transform.Translate(Vector2.up * velocidad * Time.deltaTime);
+        }
         if (vida == 0) 
         {
             Destroy(gameObject);

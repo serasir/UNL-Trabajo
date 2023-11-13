@@ -35,7 +35,7 @@ public class Meta : MonoBehaviour
             Player.transform.position = Vector3.Lerp(Player.transform.position, Target.transform.position, velocidad);
             PlayerScrp.playerAnim.SetBool("GG", true);
             PlayerScrp.SonidoPlayer.PlayOneShot(PlayerScrp.Victoria, 1);
-            MusicaFondo.Stop();
+            MusicaFondo.Stop();     
         }
     }
 }
