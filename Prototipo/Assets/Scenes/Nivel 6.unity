@@ -3114,6 +3114,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8565052882917105782, guid: 0fec5a037cecdb74f9053bcd8cc0e8c3, type: 3}
+      propertyPath: m_Size.x
+      value: 0.9866309
+      objectReference: {fileID: 0}
+    - target: {fileID: 8565052882917105782, guid: 0fec5a037cecdb74f9053bcd8cc0e8c3, type: 3}
+      propertyPath: m_Offset.x
+      value: -1.2300403
+      objectReference: {fileID: 0}
+    - target: {fileID: 8565052882917105782, guid: 0fec5a037cecdb74f9053bcd8cc0e8c3, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.12738252
+      objectReference: {fileID: 0}
     - target: {fileID: 8575586625038226051, guid: 0fec5a037cecdb74f9053bcd8cc0e8c3, type: 3}
       propertyPath: m_Name
       value: Canon
